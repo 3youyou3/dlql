@@ -6,4 +6,6 @@ function __G__TRACKBACK__(errorMessage)
     print("----------------------------------------")
 end
 
-require("app.MyApp").new():run()
+require("game")
+game.startup()
+
