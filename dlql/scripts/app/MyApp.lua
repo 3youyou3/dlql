@@ -1,6 +1,7 @@
 
 require("config")
 require("framework.init")
+import(".init")
 
 local MyApp = class("MyApp", cc.mvc.AppBase)
 
