@@ -28,6 +28,7 @@
 #include "CCLayer.h"
 #include "touch_dispatcher/CCTouchDispatcher.h"
 #include "keypad_dispatcher/CCKeypadDispatcher.h"
+#include "keyboard_dispatcher/CCKeyboardDispatcher.h"
 #include "CCAccelerometer.h"
 #include "CCDirector.h"
 #include "support/CCPointExtension.h"
@@ -65,6 +66,7 @@ bool CCLayer::init()
         m_bAccelerometerEnabled = false;
         // success
         bRet = true;
+        
     } while(0);
     return bRet;
 }
@@ -162,6 +164,34 @@ void CCLayer::setKeypadEnabled(bool enabled)
     }
 }
 
+
+bool CCLayer::isKeyboardEnabled()
+{
+    return m_bKeyboardEnabled;
+}
+
+void CCLayer::setKeyboardEnabled(bool enabled)
+{   
+    if (enabled != m_bKeyboardEnabled)
+    {
+        m_bKeyboardEnabled = enabled;
+        
+        if (m_bRunning)
+        {
+            CCDirector* pDirector = CCDirector::sharedDirector();
+            if (enabled)
+            {
+                pDirector->getKeyboardDispatcher()->addDelegate(this);
+            }
+            else
+            {
+                pDirector->getKeyboardDispatcher()->removeDelegate(this);
+            }
+        }
+    }
+}
+
+
 void CCLayer::keyBackClicked(void)
 {
     if (m_scriptEventListeners)
@@ -175,6 +205,23 @@ void CCLayer::keyMenuClicked(void)
     if (m_scriptEventListeners)
     {
         CCScriptEngineManager::sharedManager()->getScriptEngine()->executeLayerKeypadEvent(this, kTypeMenuClicked);
+    }
+}
+
+
+void CCLayer::keyDown(int keyCode)
+{
+    if (m_scriptEventListeners)
+    {
+        CCScriptEngineManager::sharedManager()->getScriptEngine()->executeLayerKeyboardEvent(this, 0, keyCode);
+    }
+}
+
+void CCLayer::keyUp(int keyCode)
+{
+    if (m_scriptEventListeners)
+    {
+        CCScriptEngineManager::sharedManager()->getScriptEngine()->executeLayerKeyboardEvent(this, 1, keyCode);
     }
 }
 
@@ -196,6 +243,11 @@ void CCLayer::onEnter()
     if (m_bKeypadEnabled)
     {
         pDirector->getKeypadDispatcher()->addDelegate(this);
+    }
+    
+    if(m_bKeyboardEnabled)
+    {
+        pDirector->getKeyboardDispatcher()->addDelegate(this);
     }
 }
 

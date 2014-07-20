@@ -28,6 +28,8 @@
 #include "CCTouch.h"
 #include "CCTouchDispatcher.h"
 
+#include "keyboard_dispatcher/CCKeyboardDispatcher.h"
+
 NS_CC_BEGIN
 
 CCEGLView* CCEGLView::s_sharedView = NULL;

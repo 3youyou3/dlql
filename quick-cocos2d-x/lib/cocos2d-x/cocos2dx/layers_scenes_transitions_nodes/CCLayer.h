@@ -31,6 +31,7 @@ THE SOFTWARE.
 #include "CCProtocols.h"
 #include "platform/CCAccelerometerDelegate.h"
 #include "keypad_dispatcher/CCKeypadDelegate.h"
+#include "keyboard_dispatcher/CCKeyboardDelegate.h"
 #include "cocoa/CCArray.h"
 #ifdef EMSCRIPTEN
 #include "base_nodes/CCGLBufferedNode.h"
@@ -52,7 +53,7 @@ All features from CCNode are valid, plus the following new features:
 - It can receive iPhone Touches
 - It can receive Accelerometer input
 */
-class CC_DLL CCLayer : public CCNode, public CCAccelerometerDelegate, public CCKeypadDelegate
+class CC_DLL CCLayer : public CCNode, public CCAccelerometerDelegate, public CCKeypadDelegate, public CCKeyboardDelegate
 {
 public:
     /**
@@ -103,12 +104,19 @@ public:
     */
     virtual bool isKeypadEnabled();
     virtual void setKeypadEnabled(bool value);
+    
+    virtual bool isKeyboardEnabled();
+    virtual void setKeyboardEnabled(bool value);
 
     virtual void keyBackClicked(void);
     virtual void keyMenuClicked(void);
+    
+    virtual void keyDown(int keyCode);
+    virtual void keyUp(int keyCode);
 protected:
     bool m_bAccelerometerEnabled;
     bool m_bKeypadEnabled;
+    bool m_bKeyboardEnabled;
 };
 
 //

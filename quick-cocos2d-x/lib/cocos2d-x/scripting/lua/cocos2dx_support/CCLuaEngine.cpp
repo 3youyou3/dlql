@@ -429,6 +429,43 @@ int CCLuaEngine::executeLayerKeypadEvent(CCLayer* pLayer, int eventType)
     return 0;
 }
 
+int CCLuaEngine::executeLayerKeyboardEvent(CCLayer* pLayer, int eventType, int keyCode)
+{
+    m_stack->clean();
+    CCLuaValueDict event;
+    event["name"] = CCLuaValue::stringValue("keyboard");
+    switch (eventType)
+    {
+        case 0:
+            event["type"] = CCLuaValue::stringValue("keydown");
+            break;
+            
+        case 1:
+            event["type"] = CCLuaValue::stringValue("keyup");
+            break;
+            
+        default:
+            return 0;
+    }
+    
+    event["key"] = CCLuaValue::intValue(keyCode);
+    
+    m_stack->pushCCLuaValueDict(event);
+    
+    CCArray *listeners = pLayer->getAllScriptEventListeners();
+    CCScriptHandlePair *p;
+    for (int i = listeners->count() - 1; i >= 0; --i)
+    {
+        p = dynamic_cast<CCScriptHandlePair*>(listeners->objectAtIndex(i));
+        if (p->event != KEYBOARD_EVENT || p->removed) continue;
+        m_stack->copyValue(1);
+        m_stack->executeFunctionByHandler(p->listener, 1);
+        m_stack->settop(1);
+    }
+    m_stack->clean();
+    return 0;
+}
+
 int CCLuaEngine::executeAccelerometerEvent(CCLayer* pLayer, CCAcceleration* pAccelerationValue)
 {
     m_stack->clean();

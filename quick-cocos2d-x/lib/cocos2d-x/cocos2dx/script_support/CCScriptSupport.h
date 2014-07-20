@@ -179,6 +179,9 @@ public:
 
     /** functions for keypad event */
     virtual int executeLayerKeypadEvent(CCLayer* pLayer, int eventType) = 0;
+    
+    /** functions for keyboard event */
+    virtual int executeLayerKeyboardEvent(CCLayer* pLayer, int eventType, int keyCode) = 0;
 
     /** execute a accelerometer event */
     virtual int executeAccelerometerEvent(CCLayer* pLayer, CCAcceleration* pAccelerationValue) = 0;

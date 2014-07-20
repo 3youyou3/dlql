@@ -154,6 +154,23 @@ function Layer:enableKeypad(enabled)
     return self
 end
 
+function Layer:onKeyboard(listener)
+    if USE_DEPRECATED_EVENT_ARGUMENTS then
+        self:addNodeEventListener(c.KEYBOARD_EVENT, function(event)
+            return listener(event.name)
+        end)
+    else
+        self:addNodeEventListener(c.KEYBOARD_EVENT, listener)
+    end
+    return self
+end
+
+function Layer:enableKeyboard(enabled)
+    self:setKeyboardEnabled(enabled)
+    return self
+end
+
+
 function Layer:onAccelerate(listener)
     if USE_DEPRECATED_EVENT_ARGUMENTS then
         self:addNodeEventListener(c.ACCELERATE_EVENT, function(event)

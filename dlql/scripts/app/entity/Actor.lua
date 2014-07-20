@@ -30,27 +30,14 @@ Actor.UNDER_ATTACK_EVENT  = "UNDER_ATTACK_EVENT"
 Actor.schema = clone(ModelBase.schema)
 Actor.schema["nickname"] = {"string"} -- 字符串类型，没有默认值
 Actor.schema["ani"] = {"string"} -- 字符串类型，没有默认值
+Actor.schema["act"] = {"table"}
 Actor.schema["phy"] = {"table"}
-
-Actor.initComponents = clone(ModelBase.initComponents)
-Actor.initComponents.fsm = "components.behavior.StateMachine"
-Actor.initComponents.ani = "engineAdapter.AnimationComponent"
-Actor.initComponents.phy = "engineAdapter.PhysicsComponent"
+Actor.schema["control"] = {"table"}
+Actor.schema["velocity"] = {"table", {x=0, y=0}}
 
 
 function Actor:ctor(properties, events, callbacks)
     Actor.super.ctor(self, properties)
-
-    if self.ani__ ~= nil and self.phy__ ~= nil then
-        local size = self.ani__.inner:boundingBox().size
-        self.phy__:size(size.width, size.height)
-    end
-
-    -- self:addComponent("components.behavior.StateMachine")
-    -- self:addComponent("engineAdapter.AnimationComponent")
-    -- self.fsm__ = self:getComponent("components.behavior.StateMachine")
-    -- self.ani__ = self:getComponent("engineAdapter.AnimationComponent")
-
 
     -- 设定状态机的默认事件
     -- local defaultEvents = {
@@ -93,16 +80,6 @@ function Actor:ctor(properties, events, callbacks)
     -- })
 
     -- self.fsm__:doEvent("start") -- 启动状态机
-end
-
-function Actor:pos(x, y)
-    self.phy__:pos(x, y)
-    return self
-end
-
-function Actor:rotation(r)
-    self.phy__:rotation(r)
-    return self
 end
 
 function Actor:getNickname()

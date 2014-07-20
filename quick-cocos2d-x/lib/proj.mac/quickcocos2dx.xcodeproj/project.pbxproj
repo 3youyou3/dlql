@@ -32,6 +32,8 @@
 		2EBA8474191B6AC500256D60 /* LuaCocoStudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EBA8470191B6AC500256D60 /* LuaCocoStudio.cpp */; };
 		4983220E187FE0A900733BFB /* HelperFunc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4983220C187FE0A900733BFB /* HelperFunc.cpp */; };
 		49832211187FE0BE00733BFB /* CZHelperFunc_luabinding.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4983220F187FE0BE00733BFB /* CZHelperFunc_luabinding.cpp */; };
+		4D8EB57C1978225E0083B6BC /* CCKeyboardDelegate.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D8EB5781978225E0083B6BC /* CCKeyboardDelegate.cpp */; };
+		4D8EB57D1978225E0083B6BC /* CCKeyboardDispatcher.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D8EB57A1978225E0083B6BC /* CCKeyboardDispatcher.cpp */; };
 		F411F3E1175CEAFC00EF549A /* libluajit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F411F3E0175CEAFC00EF549A /* libluajit.a */; };
 		F414F4471961EB5D007C18E4 /* CCTouchTargetNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F414F4451961EB5D007C18E4 /* CCTouchTargetNode.cpp */; };
 		F41D98F417F08B85007171D8 /* WebSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F41D98F217F08B85007171D8 /* WebSocket.cpp */; };
@@ -481,6 +483,10 @@
 		4983220D187FE0A900733BFB /* HelperFunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelperFunc.h; sourceTree = "<group>"; };
 		4983220F187FE0BE00733BFB /* CZHelperFunc_luabinding.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CZHelperFunc_luabinding.cpp; sourceTree = "<group>"; };
 		49832210187FE0BE00733BFB /* CZHelperFunc_luabinding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CZHelperFunc_luabinding.h; sourceTree = "<group>"; };
+		4D8EB5781978225E0083B6BC /* CCKeyboardDelegate.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCKeyboardDelegate.cpp; sourceTree = "<group>"; };
+		4D8EB5791978225E0083B6BC /* CCKeyboardDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCKeyboardDelegate.h; sourceTree = "<group>"; };
+		4D8EB57A1978225E0083B6BC /* CCKeyboardDispatcher.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCKeyboardDispatcher.cpp; sourceTree = "<group>"; };
+		4D8EB57B1978225E0083B6BC /* CCKeyboardDispatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCKeyboardDispatcher.h; sourceTree = "<group>"; };
 		F411F3DB175CEAFC00EF549A /* lauxlib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lauxlib.h; sourceTree = "<group>"; };
 		F411F3DC175CEAFC00EF549A /* lua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua.h; sourceTree = "<group>"; };
 		F411F3DD175CEAFC00EF549A /* luaconf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = luaconf.h; sourceTree = "<group>"; };
@@ -1408,6 +1414,18 @@
 				4983220D187FE0A900733BFB /* HelperFunc.h */,
 			);
 			path = apptools;
+			sourceTree = "<group>";
+		};
+		4D8EB5771978225E0083B6BC /* keyboard_dispatcher */ = {
+			isa = PBXGroup;
+			children = (
+				4D8EB5781978225E0083B6BC /* CCKeyboardDelegate.cpp */,
+				4D8EB5791978225E0083B6BC /* CCKeyboardDelegate.h */,
+				4D8EB57A1978225E0083B6BC /* CCKeyboardDispatcher.cpp */,
+				4D8EB57B1978225E0083B6BC /* CCKeyboardDispatcher.h */,
+			);
+			name = keyboard_dispatcher;
+			path = cocos2dx/keyboard_dispatcher;
 			sourceTree = "<group>";
 		};
 		F411F3D9175CEAEA00EF549A /* luajit */ = {
@@ -2454,6 +2472,7 @@
 		F4DE084216800151005DB2DB /* cocos2d-x */ = {
 			isa = PBXGroup;
 			children = (
+				4D8EB5771978225E0083B6BC /* keyboard_dispatcher */,
 				F4DE084316800187005DB2DB /* cocos2dx */,
 				F4DE0A91168001EE005DB2DB /* CocosDenshion */,
 				F4DCACDF168C0F5900679DBE /* extensions */,
@@ -3329,6 +3348,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4DE0AA516800201005DB2DB /* CDAudioManager.m in Sources */,
+				4D8EB57C1978225E0083B6BC /* CCKeyboardDelegate.cpp in Sources */,
 				F426146717E816FE00D37B8D /* CCCommon.cpp in Sources */,
 				F4DE0AA816800201005DB2DB /* CDOpenALSupport.m in Sources */,
 				F4DE0AAA16800201005DB2DB /* CDXMacOSXSupport.mm in Sources */,
@@ -3547,6 +3567,7 @@
 				2EBA845B191B6A6E00256D60 /* CCFilter.cpp in Sources */,
 				F4D26D96196320050087295D /* UILoadingBar.cpp in Sources */,
 				F4E880971770071600577406 /* unzip.cpp in Sources */,
+				4D8EB57D1978225E0083B6BC /* CCKeyboardDispatcher.cpp in Sources */,
 				F4D26DAD196320050087295D /* TriggerBase.cpp in Sources */,
 				F4E880981770071600577406 /* ZipUtils.cpp in Sources */,
 				F4CB87B2180D02F600D81CF3 /* timeout.c in Sources */,

@@ -1,6 +1,6 @@
 /*
 ** Lua binding: CCPhysicsWorld_luabinding
-** Generated automatically by tolua++-1.0.92 on Thu May  8 17:32:55 2014.
+** Generated automatically by tolua++-1.0.92 on Sat Jul 19 23:22:25 2014.
 */
 
 #include "CCPhysicsWorld_luabinding.h"
@@ -1368,27 +1368,32 @@ static int tolua_CCPhysicsWorld_luabinding_CCPhysicsBody_getVelocity00(lua_State
  tolua_Error tolua_err;
  if (
      !tolua_isusertype(tolua_S,1,"CCPhysicsBody",0,&tolua_err) ||
-     !tolua_isnumber(tolua_S,2,1,&tolua_err) ||
-     !tolua_isnumber(tolua_S,3,1,&tolua_err) ||
-     !tolua_isnoobj(tolua_S,4,&tolua_err)
+     !tolua_isnoobj(tolua_S,2,&tolua_err)
  )
   goto tolua_lerror;
  else
 #endif
  {
   CCPhysicsBody* self = (CCPhysicsBody*)  tolua_tousertype(tolua_S,1,0);
-  float velocityX = ((float)  tolua_tonumber(tolua_S,2,0));
-  float velocityY = ((float)  tolua_tonumber(tolua_S,3,0));
 #ifndef TOLUA_RELEASE
   if (!self) tolua_error(tolua_S,"invalid 'self' in function 'getVelocity'", NULL);
 #endif
   {
-   self->getVelocity(&velocityX,&velocityY);
-   tolua_pushnumber(tolua_S,(lua_Number)velocityX);
-   tolua_pushnumber(tolua_S,(lua_Number)velocityY);
+   CCPoint tolua_ret = (CCPoint)  self->getVelocity();
+   {
+#ifdef __cplusplus
+    void* tolua_obj = Mtolua_new((CCPoint)(tolua_ret));
+     tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#else
+    void* tolua_obj = tolua_copy(tolua_S,(void*)&tolua_ret,sizeof(CCPoint));
+     tolua_pushusertype(tolua_S,tolua_obj,"CCPoint");
+    tolua_register_gc(tolua_S,lua_gettop(tolua_S));
+#endif
+   }
   }
  }
- return 2;
+ return 1;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'getVelocity'.",&tolua_err);

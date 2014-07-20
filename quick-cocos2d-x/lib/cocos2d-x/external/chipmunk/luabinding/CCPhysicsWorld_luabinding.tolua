@@ -71,7 +71,8 @@ class CCPhysicsBody : public CCObject
     float getInertia(void);
     void setInertia(float inertia);
 
-    void getVelocity(float *velocityX = 0, float *velocityY = 0);
+    //void getVelocity(float *velocityX = 0, float *velocityY = 0);
+    CCPoint getVelocity(void);
     void setVelocity(float velocityX, float velocityY);
     void setVelocity(CCPoint velocity);
     void setVelocity(CCPhysicsVector* velocity);

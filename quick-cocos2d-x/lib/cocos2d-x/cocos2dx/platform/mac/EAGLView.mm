@@ -40,6 +40,8 @@ THE SOFTWARE.
 #import "CCEventDispatcherMac.h"
 #import "CCEGLView.h"
 
+#include "keyboard_dispatcher/CCKeyboardDispatcher.h"
+
 
 //USING_NS_CC;
 static EAGLView *view;
@@ -445,7 +447,7 @@ static EAGLView *view;
 - (void)keyDown:(NSEvent *)theEvent
 {
 	DISPATCH_EVENT(theEvent, _cmd);
-	
+	cocos2d::CCDirector::sharedDirector()->getKeyboardDispatcher()->dispatchKeyboardMSG([theEvent keyCode], true);
 	// pass the event along to the next responder (like your NSWindow subclass)
 	[super keyDown:theEvent];
 }
@@ -453,6 +455,8 @@ static EAGLView *view;
 - (void)keyUp:(NSEvent *)theEvent
 {
 	DISPATCH_EVENT(theEvent, _cmd);
+
+    cocos2d::CCDirector::sharedDirector()->getKeyboardDispatcher()->dispatchKeyboardMSG([theEvent keyCode], false);
 
 	// pass the event along to the next responder (like your NSWindow subclass)
 	[super keyUp:theEvent];

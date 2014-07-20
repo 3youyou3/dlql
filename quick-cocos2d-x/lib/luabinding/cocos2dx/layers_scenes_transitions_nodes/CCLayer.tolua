@@ -45,6 +45,9 @@ class CCLayer : public CCNode
     void setKeypadEnabled(bool value);
     bool isKeypadEnabled();
 
+    void setKeyboardEnabled(bool value);
+    bool isKeyboardEnabled();
+
     void setAccelerometerEnabled(bool value);
     bool isAccelerometerEnabled();
     void setAccelerometerInterval(double interval);

@@ -37,6 +37,7 @@ NS_CC_BEGIN
 #define MENU_ITEM_CLICKED_EVENT     4
 #define ACCELERATE_EVENT            5
 #define KEYPAD_EVENT                6
+#define KEYBOARD_EVENT              7
 
 #define NODE_TOUCH_CAPTURING_PHASE  0
 #define NODE_TOUCH_TARGETING_PHASE  1
